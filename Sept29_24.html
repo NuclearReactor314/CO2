@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>001</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background: pink;
+        }
+        .container {
+            position: relative;
+            width: 240px;
+            height: 120px;
+            margin: 200px auto;
+        }
+        .box {
+            width: 120px;
+            height: 120px;
+            position: absolute;
+            top: 0;
+            left: 60px;
+            transform: rotate(45deg) scale(0.85);
+            animation: love 0.5s infinite, color-change 5s infinite;
+        }
+        .box.mirror {
+            transform: rotate(45deg) scale(0.85) scaleX(-1);
+        }
+        .box::before,
+        .box::after {
+            content: "";
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            background: inherit;
+            border-radius: 50%;
+            box-shadow: inherit;
+        }
+        .box::before {
+            left: -68px;
+        }
+        .box::after {
+            top: -68px;
+        }
+        @keyframes love {
+            0% {
+                transform: rotate(45deg) scale(0.85);
+            }
+            50% {
+                transform: rotate(45deg) scale(1);
+            }
+            100% {
+                transform: rotate(45deg) scale(0.85);
+            }
+        }
+        @keyframes color-change {
+            0% { background: #f00; box-shadow: 0 0 20px rgba(255, 0, 0, 0.7); }
+            10% { background: #ff0; box-shadow: 0 0 20px rgba(255, 255, 0, 0.7); }
+            20% { background: #0f0; box-shadow: 0 0 20px rgba(0, 255, 0, 0.7); }
+            30% { background: #0ff; box-shadow: 0 0 20px rgba(0, 255, 255, 0.7); }
+            40% { background: #00f; box-shadow: 0 0 20px rgba(0, 0, 255, 0.7); }
+            50% { background: #f0f; box-shadow: 0 0 20px rgba(255, 0, 255, 0.7); }
+            60% { background: #ff1493; box-shadow: 0 0 20px rgba(255, 20, 147, 0.7); }
+            70% { background: #ffa500; box-shadow: 0 0 20px rgba(255, 165, 0, 0.7); }
+            80% { background: #4b0082; box-shadow: 0 0 20px rgba(75, 0, 130, 0.7); }
+            90% { background: #800080; box-shadow: 0 0 20px rgba(128, 0, 128, 0.7); }
+            100% { background: #f00; box-shadow: 0 0 20px rgba(255, 0, 0, 0.7); }
+        }
+        p {
+            text-align: center;
+            font-size: 36px;
+            margin-top: 20px;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box"></div>
+        <div class="box mirror"></div>
+    </div>
+    <b>我有病，一病就是对你相思成疾，无药可医。</b>
+    <li><a href="Sept30_24.html">Next</a></li>
+</body>
+</html>
