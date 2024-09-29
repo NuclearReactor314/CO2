@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>000</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: lightblue;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .container {
+            position: relative;
+            width: 250px;
+            height: 130px;
+        }
+        .heart {
+            width: 120px;
+            height: 120px;
+            background-color: red;
+            position: absolute;
+            top: 0;
+            left: 50px;
+            transform: rotate(45deg);
+            animation: pulse 1s infinite, colorShift 3s infinite;
+        }
+        .heart.mirror {
+            transform: rotate(45deg) scaleX(-1);
+        }
+        .heart::before, .heart::after {
+            content: "";
+            width: 120px;
+            height: 120px;
+            background-color: inherit;
+            border-radius: 50%;
+            position: absolute;
+        }
+        .heart::before {
+            top: -60px;
+            left: 0;
+        }
+        .heart::after {
+            left: -60px;
+            top: 0;
+        }
+        @keyframes pulse {
+            0% { transform: rotate(45deg) scale(0.9); }
+            50% { transform: rotate(45deg) scale(1.1); }
+            100% { transform: rotate(45deg) scale(0.9); }
+        }
+        @keyframes colorShift {
+            0% { background-color: red; }
+            25% { background-color: yellow; }
+            50% { background-color: green; }
+            75% { background-color: blue; }
+            100% { background-color: red; }
+        }
+        p {
+            margin-top: 20px;
+            font-size: 24px;
+            color: navy;
+        }
+        .next-page {
+            margin-top: 20px;
+        }
+        a {
+            text-decoration: none;
+            font-size: 18px;
+            color: darkblue;
+            border: 2px solid darkblue;
+            padding: 5px 10px;
+            border-radius: 8px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        a:hover {
+            background-color: darkblue;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="heart"></div>
+        <div class="heart mirror"></div>
+    </div>
+    <p>我好喜欢你，像你妈打你，不讲道理。</p>
+    <div class="next-page">
+        <a href="Sept29_24.html">Next</a>
+    </div>
+</body>
+</html>
