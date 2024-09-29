@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8" />
-    <title>000</title>
+    <title>c6h12o6</title>
     <style>
         * {
             margin: 0;
@@ -21,48 +21,21 @@
         .container {
             position: relative;
             width: 250px;
-            height: 130px;
+            height: 250px;
         }
-        .heart {
-            width: 120px;
-            height: 120px;
-            background-color: red;
-            position: absolute;
-            top: 0;
-            left: 50px;
-            transform: rotate(45deg);
-            animation: pulse 1s infinite, colorShift 3s infinite;
+        img {
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            animation: rotateImage 5s infinite linear;
         }
-        .heart.mirror {
-            transform: rotate(45deg) scaleX(-1);
-        }
-        .heart::before, .heart::after {
-            content: "";
-            width: 120px;
-            height: 120px;
-            background-color: inherit;
-            border-radius: 50%;
-            position: absolute;
-        }
-        .heart::before {
-            top: -60px;
-            left: 0;
-        }
-        .heart::after {
-            left: -60px;
-            top: 0;
-        }
-        @keyframes pulse {
-            0% { transform: rotate(45deg) scale(0.9); }
-            50% { transform: rotate(45deg) scale(1.1); }
-            100% { transform: rotate(45deg) scale(0.9); }
-        }
-        @keyframes colorShift {
-            0% { background-color: red; }
-            25% { background-color: yellow; }
-            50% { background-color: green; }
-            75% { background-color: blue; }
-            100% { background-color: red; }
+        @keyframes rotateImage {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
         }
         p {
             margin-top: 20px;
@@ -89,8 +62,7 @@
 </head>
 <body>
     <div class="container">
-        <div class="heart"></div>
-        <div class="heart mirror"></div>
+        <img src="001.png" alt="旋转图片">
     </div>
     <p>我好喜欢你，像你妈打你，不讲道理。</p>
     <div class="next-page">
