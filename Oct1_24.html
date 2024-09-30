@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>003</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: lightgray;
+        }
+        #game-container {
+            width: 400px;
+            height: 400px;
+            border: 5px solid black;
+            margin: 50px auto;
+            position: relative;
+            background-color: white;
+        }
+        .car {
+            width: 40px;
+            height: 40px;
+            background-color: red;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .finish {
+            width: 60px;
+            height: 60px;
+            background-color: green;
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+        }
+        .game-over {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        .game-over img {
+            animation: spin 2s infinite linear;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        #controls {
+            margin: 20px auto;
+            text-align: center;
+        }
+        #controls button {
+            width: 60px;
+            height: 60px;
+            margin: 5px;
+            font-size: 24px;
+        }
+        .next {
+            display: none;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <div class="car" id="car"></div>
+        <div class="finish"></div>
+        <div class="game-over" id="game-over">
+            <img src="003.png" alt="Game Over" width="100" height="100" />
+            <div class="next">
+                <a href="Oct2_24.html">Next</a>
+                <a href="index.html">Home</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="controls">
+        <button onclick="moveUp()">↑</button><br/>
+        <button onclick="moveLeft()">←</button>
+        <button onclick="moveDown()">↓</button>
+        <button onclick="moveRight()">→</button>
+    </div>
+
+    <script>
+        const car = document.getElementById('car');
+        const finish = document.querySelector('.finish');
+        const gameOverScreen = document.getElementById('game-over');
+        let carX = 0, carY = 0;
+        const step = 10;
+
+        document.addEventListener('keydown', handleKeydown);
+
+        function handleKeydown(e) {
+            switch (e.key) {
+                case 'ArrowUp':
+                case 'w':
+                    moveUp();
+                    break;
+                case 'ArrowDown':
+                case 's':
+                    moveDown();
+                    break;
+                case 'ArrowLeft':
+                case 'a':
+                    moveLeft();
+                    break;
+                case 'ArrowRight':
+                case 'd':
+                    moveRight();
+                    break;
+            }
+        }
+
+        function moveUp() {
+            if (carY > 0) {
+                carY -= step;
+                updatePosition();
+            } else {
+                resetGame();
+            }
+        }
+
+        function moveDown() {
+            if (carY < 360) {
+                carY += step;
+                updatePosition();
+            } else {
+                resetGame();
+            }
+        }
+
+        function moveLeft() {
+            if (carX > 0) {
+                carX -= step;
+                updatePosition();
+            } else {
+                resetGame();
+            }
+        }
+
+        function moveRight() {
+            if (carX < 360) {
+                carX += step;
+                updatePosition();
+            } else {
+                resetGame();
+            }
+        }
+
+        function updatePosition() {
+            car.style.top = carY + 'px';
+            car.style.left = carX + 'px';
+            checkFinish();
+        }
+
+        function checkFinish() {
+            const carRect = car.getBoundingClientRect();
+            const finishRect = finish.getBoundingClientRect();
+            if (
+                carRect.left >= finishRect.left &&
+                carRect.top >= finishRect.top &&
+                carRect.right <= finishRect.right &&
+                carRect.bottom <= finishRect.bottom
+            ) {
+                gameOver();
+            }
+        }
+
+        function resetGame() {
+            carX = 0;
+            carY = 0;
+            updatePosition();
+        }
+
+        function gameOver() {
+            gameOverScreen.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
