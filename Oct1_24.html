@@ -62,9 +62,26 @@
             margin: 5px;
             font-size: 24px;
         }
-        .next {
-            display: none;
+        .next-section {
+            text-align: center;
             margin-top: 20px;
+        }
+        .next {
+            font-size: 20px;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: white;
+            background-color: darkblue;
+            border: none;
+            border-radius: 10px;
+        }
+        .next:hover {
+            background-color: navy;
+        }
+        p {
+            font-size: 18px;
+            margin-top: 20px;
+            color: black;
         }
     </style>
 </head>
@@ -73,11 +90,7 @@
         <div class="car" id="car"></div>
         <div class="finish"></div>
         <div class="game-over" id="game-over">
-            <img src="003.png" alt="Game Over" width="100" height="100" />
-            <div class="next">
-                <a href="Oct2_24.html">Next</a>
-                <a href="index.html">Home</a>
-            </div>
+            <img src="003.png" alt="Game Over" width="200" height="200" />
         </div>
     </div>
 
@@ -86,6 +99,12 @@
         <button onclick="moveLeft()">←</button>
         <button onclick="moveDown()">↓</button>
         <button onclick="moveRight()">→</button>
+    </div>
+
+    <div class="next-section">
+        <p>将红色方块移动至绿色方块</p>
+        <a href="Oct2_24.html" class="next">Next</a>
+        <a href="index.html">Home</a>
     </div>
 
     <script>
