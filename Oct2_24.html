@@ -63,22 +63,11 @@
         button:hover {
             background-color: darkblue;
         }
-       #win-message {
-        display: none;
-        font-size: 24px;
-        color: green;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(255, 255, 255, 0.8); 
+        #win-message {
+            display: none;
+            font-size: 24px;
+            color: green;
         }
-        
         #win-message img {
             width: 200px;
             height: 200px;
@@ -92,13 +81,14 @@
 </head>
 <body>
 
-    <h1>004</h1>
+    <h1> </h1>
     <div id="win-message">
         <p>已完成！</p>
         <img src="004.jpeg" alt="Winning Image">
     </div>
     
     <div class="game-board">
+        <!-- 卡片容器，将自动生成卡片 -->
     </div>
 
     <div class="buttons">
@@ -112,8 +102,10 @@
             "004_5.jpeg", "004_6.jpeg", "004_7.jpeg", "004_8.jpeg"
         ];
 
+        // 每对图片出现两次，形成16张牌
         let cardImages = [...images, ...images];
 
+        // 洗牌函数
         function shuffle(array) {
             for (let i = array.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
@@ -129,6 +121,7 @@
         let lockBoard = false;
         let matchesFound = 0;
 
+        // 创建卡片
         cardImages.forEach((image, index) => {
             const card = document.createElement('div');
             card.classList.add('card');
@@ -142,6 +135,7 @@
             gameBoard.appendChild(card);
         });
 
+        // 翻牌逻辑
         function flipCard(card) {
             if (lockBoard || card === firstCard) return;
             
