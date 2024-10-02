@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>005</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: lightblue;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .buttons {
+            margin: 20px;
+        }
+        .buttons button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            background-color: navy;
+            color: white;
+            border-radius: 5px;
+        }
+        .buttons button:hover {
+            background-color: darkblue;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 24px;
+        }
+        #game-image {
+            display: none;
+            width: 150px;
+        }
+        .scoreboard {
+            margin: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Rock Paper Scissors</h1>
+
+    <div class="buttons">
+        <button onclick="playGame('rock')">石头</button>
+        <button onclick="playGame('paper')">布</button>
+        <button onclick="playGame('scissors')">剪刀</button>
+    </div>
+
+    <div id="result">
+        <p id="computer-choice">Computer chose: </p>
+        <p id="game-result"></p>
+        <img id="game-image" src="" alt="Result Image">
+    </div>
+
+    <div class="scoreboard">
+        <p>Wins: <span id="win-count">0</span></p>
+        <p>Losses: <span id="loss-count">0</span></p>
+        <p>Draws: <span id="draw-count">0</span></p>
+    </div>
+
+    <div class="buttons">
+        <button onclick="window.location.href='index.html'">Home</button>
+        <button onclick="window.location.href='next.html'">Next</button>
+    </div>
+
+    <script>
+        const choices = ['rock', 'paper', 'scissors'];
+        let winCount = 0;
+        let lossCount = 0;
+        let drawCount = 0;
+
+        function playGame(playerChoice) {
+            const computerChoice = choices[Math.floor(Math.random() * choices.length)];
+            document.getElementById('computer-choice').textContent = 'Computer chose: ' + computerChoice;
+
+            let result;
+            if (playerChoice === computerChoice) {
+                result = 'draw';
+                drawCount++;
+                document.getElementById('game-image').src = '005_3.jpeg';
+            } else if (
+                (playerChoice === 'rock' && computerChoice === 'scissors') ||
+                (playerChoice === 'scissors' && computerChoice === 'paper') ||
+                (playerChoice === 'paper' && computerChoice === 'rock')
+            ) {
+                result = 'win';
+                winCount++;
+                document.getElementById('game-image').src = '005_1.jpeg';
+            } else {
+                result = 'loss';
+                lossCount++;
+                document.getElementById('game-image').src = '005_2.jpeg';
+            }
+
+            updateScoreboard();
+            displayResult(result);
+        }
+
+        function updateScoreboard() {
+            document.getElementById('win-count').textContent = winCount;
+            document.getElementById('loss-count').textContent = lossCount;
+            document.getElementById('draw-count').textContent = drawCount;
+        }
+
+        function displayResult(result) {
+            document.getElementById('game-result').textContent = result === 'win' ? 'You win!' : result === 'loss' ? 'You lose!' : 'It\'s a draw!';
+            const gameImage = document.getElementById('game-image');
+            gameImage.style.display = 'block';
+            
+            setTimeout(() => {
+                gameImage.style.display = 'none';
+                document.getElementById('game-result').textContent = '';
+                document.getElementById('computer-choice').textContent = 'Computer chose: ';
+            }, 2000);
+        }
+    </script>
+
+</body>
+</html>
